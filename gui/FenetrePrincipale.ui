@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form_xsnifferlogparser</class>
+ <widget class="QWidget" name="Form_xsnifferlogparser">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>718</width>
+    <height>696</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>XSniffer Log Parser</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_4">
+   <item>
+    <widget class="QLabel" name="lab_chose_file">
+     <property name="text">
+      <string>Chose a .csv from XSniffer</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="vl_browser">
+     <item>
+      <layout class="QHBoxLayout" name="hl_browse">
+       <item>
+        <widget class="QLineEdit" name="le_browsed_file"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btn_browse">
+         <property name="text">
+          <string>Browse</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="hl_parse">
+     <item>
+      <widget class="QLabel" name="lab_current_file">
+       <property name="text">
+        <string>chosen file: </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_parse">
+       <property name="text">
+        <string>parse</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="hl_sensors">
+     <item>
+      <layout class="QVBoxLayout" name="vl_light">
+       <item>
+        <widget class="QCheckBox" name="rbtn_light">
+         <property name="text">
+          <string>Light</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lab_light_min">
+         <property name="text">
+          <string>Lmin: </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lab_light_avg">
+         <property name="text">
+          <string>Lavg: </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lab_light_mx">
+         <property name="text">
+          <string>Lmax: </string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="vl_temp">
+       <item>
+        <widget class="QCheckBox" name="rbtn_temperature">
+         <property name="text">
+          <string>Temperature</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lab_temp_min">
+         <property name="text">
+          <string>Tmin: </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lab_temp_avg">
+         <property name="text">
+          <string>Tavg: </string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lab_temp_max">
+         <property name="text">
+          <string>Tmax: </string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QGraphicsView" name="gv_histogram"/>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="hl_bottom_buttons">
+     <item>
+      <widget class="QPushButton" name="btn_json">
+       <property name="text">
+        <string>JSON summary</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_close">
+       <property name="text">
+        <string>exit</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+  <zorder>gv_histogram</zorder>
+  <zorder>lab_current_file</zorder>
+  <zorder>lab_chose_file</zorder>
+  <zorder>lab_light_min</zorder>
+  <zorder>lab_temp_min</zorder>
+  <zorder>lab_light_avg</zorder>
+  <zorder>lab_temp_avg</zorder>
+  <zorder>lab_light_mx</zorder>
+  <zorder>lab_temp_max</zorder>
+  <zorder>btn_close</zorder>
+  <zorder>btn_parse</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
