@@ -8,9 +8,7 @@ Usage:
 - The [Exit] button closes the app.
 
 
-![text parsing](screens/GUI_details.PNG)
-
-
+![text parsing](screens/GUI_details.png)
 
 History and motivation:
 For a ADR's course in the last semester of Embedded Systems at HEIG-VD, we had to fetch the min, max and average of light measures froms sensors.
