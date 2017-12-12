@@ -1,4 +1,6 @@
 import csv
+import matplotlib.pyplot as plt
+import pyqtgraph as pg
 
 import os
 from PySide import QtGui
@@ -12,10 +14,14 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
 
         # init Window
         self.setupUi(self)
+        self._update_ui()
         self._setup_raccourcis_clavier()
         self._setup_connections()
 
         self.show()
+
+    def _update_ui(self):
+        self.p2 = self.gwin_histogram.addPlot(title="Light (green) | Temperature (red)")
 
     def _setup_raccourcis_clavier(self):
         QtGui.QShortcut(QtGui.QKeySequence.Open, self, self._on_btn_browse_clicked)
@@ -28,6 +34,7 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
             self.le_browsed_file.setText(filename)
             self.filename = filename
             self.lab_current_file.setText(os.path.basename(self.filename))
+            self.btn_parse.setEnabled(True)
 
     def _on_btn_json_clicked(self):
         json_filename, json_filter = QtGui.QFileDialog.getOpenFileName(parent=self, caption='save to file', dir='.',
@@ -157,11 +164,33 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
                 'Tmax: {0} @ {1}+{2} on n: {3}'.format(str(temp_current_max), str(temp_elapsed_time_max),
                                                        str(temp_msec_max), str(temp_node_max)))
 
+            self.light_measures = light_measures
+            self.temp_measures = temp_measures
+            if len(light_measures) != 0:
+                self.cbox_light.setEnabled(True)
+            if len(temp_measures) !=0:
+                self.cbox_temperature.setEnabled(True)
+
+    def _on_cbox_light_clicked(self):
+        if self.cbox_light.isChecked():
+            self.c1 = self.p2.plot(self.light_measures, pen=(0,255,0), name="Light (red)")
+        else:
+            self.c1.clear()
+
+    def _on_cbox_temperature_clicked(self):
+        if self.cbox_temperature.isChecked():
+            self.c2 = self.p2.plot(self.temp_measures, pen=(255, 0, 0), name="Temperature (green)")
+        else:
+            self.c2.clear()
+
+
     def _setup_connections(self):
         self.btn_browse.clicked.connect(self._on_btn_browse_clicked)
         self.btn_parse.clicked.connect(self._on_btn_parse_clicked)
         self.btn_json.clicked.connect(self._on_btn_json_clicked)
         self.btn_close.clicked.connect(self._on_btn_close_clicked)
+        self.cbox_light.stateChanged.connect(self._on_cbox_light_clicked)
+        self.cbox_temperature.stateChanged.connect(self._on_cbox_temperature_clicked)
 
 
 app = QtGui.QApplication([])

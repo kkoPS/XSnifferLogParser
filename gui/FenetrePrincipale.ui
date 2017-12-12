@@ -50,8 +50,20 @@
      </item>
      <item>
       <widget class="QPushButton" name="btn_parse">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>parse</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -62,7 +74,10 @@
      <item>
       <layout class="QVBoxLayout" name="vl_light">
        <item>
-        <widget class="QCheckBox" name="rbtn_light">
+        <widget class="QCheckBox" name="cbox_light">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Light</string>
          </property>
@@ -83,7 +98,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="lab_light_mx">
+        <widget class="QLabel" name="lab_light_max">
          <property name="text">
           <string>Lmax: </string>
          </property>
@@ -94,9 +109,15 @@
      <item>
       <layout class="QVBoxLayout" name="vl_temp">
        <item>
-        <widget class="QCheckBox" name="rbtn_temperature">
+        <widget class="QCheckBox" name="cbox_temperature">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Temperature</string>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -126,12 +147,19 @@
     </layout>
    </item>
    <item>
-    <widget class="QGraphicsView" name="gv_histogram"/>
+    <widget class="GraphicsWindow" name="gwin_histogram">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="hl_bottom_buttons">
      <item>
       <widget class="QPushButton" name="btn_json">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="text">
         <string>JSON summary</string>
        </property>
@@ -147,18 +175,16 @@
     </layout>
    </item>
   </layout>
-  <zorder>gv_histogram</zorder>
-  <zorder>lab_current_file</zorder>
+  <zorder>gwin_histogram</zorder>
   <zorder>lab_chose_file</zorder>
-  <zorder>lab_light_min</zorder>
-  <zorder>lab_temp_min</zorder>
-  <zorder>lab_light_avg</zorder>
-  <zorder>lab_temp_avg</zorder>
-  <zorder>lab_light_mx</zorder>
-  <zorder>lab_temp_max</zorder>
-  <zorder>btn_close</zorder>
-  <zorder>btn_parse</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>GraphicsWindow</class>
+   <extends>QGraphicsView</extends>
+   <header>pyqtgraph</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
