@@ -1,8 +1,6 @@
 import csv
-import matplotlib.pyplot as plt
-import pyqtgraph as pg
-
 import os
+
 from PySide import QtGui
 
 from gui.FenetrePrincipale import Ui_Form_xsnifferlogparser
@@ -168,8 +166,12 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
             self.temp_measures = temp_measures
             if len(light_measures) != 0:
                 self.cbox_light.setEnabled(True)
+                if not self.cbox_light.isChecked():
+                    self.cbox_light.click()
             if len(temp_measures) !=0:
                 self.cbox_temperature.setEnabled(True)
+                if not self.cbox_temperature.isChecked():
+                    self.cbox_temperature.click()
 
     def _on_cbox_light_clicked(self):
         if self.cbox_light.isChecked():
