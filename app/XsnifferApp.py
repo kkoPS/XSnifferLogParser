@@ -97,7 +97,9 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
                         light_msec_min = int(row[layout_csv_columns.MSEC])
 
                 except ValueError:
-                    print("Error converting: {0} or {1} to an integer at line {2}".format(row[layout_csv_columns.LIGHT_LSB], row[layout_csv_columns.LIGHT_MSB],
+                    print("Error converting: {0} or {1} to an integer at line {2}".format(row[
+                                                                                              layout_csv_columns.LIGHT_LSB], row[
+                                                                                              layout_csv_columns.LIGHT_MSB],
                                                                                           light_index + 1))
                     light_nb_errors += 1
 
@@ -122,7 +124,9 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
 
                 except ValueError:
                     print(
-                        "Error converting: {0} or {1} to an integer at line {2}".format(row[layout_csv_columns.TEMPERATURE_LSB], row[layout_csv_columns.TEMPERATURE_MSB],
+                        "Error converting: {0} or {1} to an integer at line {2}".format(row[
+                                                                                            layout_csv_columns.TEMPERATURE_LSB], row[
+                                                                                            layout_csv_columns.TEMPERATURE_MSB],
                                                                                         temp_index + 1))
                     temp_nb_errors += 1
 
