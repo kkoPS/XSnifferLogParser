@@ -4,7 +4,7 @@ import os
 from PySide import QtGui
 
 from gui.FenetrePrincipale import Ui_Form_xsnifferlogparser
-
+import layout_csv_columns
 
 class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
     def __init__(self):
@@ -81,23 +81,23 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
             parse_enumeration = enumerate(reader)
             for light_index, row in parse_enumeration:
                 try:
-                    light_lsb = int(row['9'])
-                    light_msb = int(row['10'])
+                    light_lsb = int(row[layout_csv_columns.LIGHT_LSB])
+                    light_msb = int(row[layout_csv_columns.LIGHT_MSB])
                     measure = light_lsb + 256 * light_msb
                     light_measures.append(measure)
                     if measure > light_current_max:
                         light_current_max = measure
-                        light_node_max = int(row['3'])
-                        light_elapsed_time_max = row['ElapsedTime']
-                        light_msec_max = int(row['msec'])
+                        light_node_max = int(row[layout_csv_columns.NODE])
+                        light_elapsed_time_max = row[layout_csv_columns.ELAPSED_TIME]
+                        light_msec_max = int(row[layout_csv_columns.MSEC])
                     elif measure < light_current_min:
                         light_current_min = measure
                         light_node_min = int(row['3'])
-                        light_elapsed_time_min = row['ElapsedTime']
-                        light_msec_min = int(row['msec'])
+                        light_elapsed_time_min = row[layout_csv_columns.ELAPSED_TIME]
+                        light_msec_min = int(row[layout_csv_columns.MSEC])
 
                 except ValueError:
-                    print("Error converting: {0} or {1} to an integer at line {2}".format(row['9'], row['10'],
+                    print("Error converting: {0} or {1} to an integer at line {2}".format(row[layout_csv_columns.LIGHT_LSB], row[layout_csv_columns.LIGHT_MSB],
                                                                                           light_index + 1))
                     light_nb_errors += 1
 
@@ -105,24 +105,24 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
             parse_enumeration = enumerate(reader)  # to reset the iterator
             for temp_index, temp_row in parse_enumeration:
                 try:
-                    temp_lsb = int(temp_row['7'])
-                    temp_msb = int(temp_row['8'])
+                    temp_lsb = int(temp_row[layout_csv_columns.TEMPERATURE_LSB])
+                    temp_msb = int(temp_row[layout_csv_columns.TEMPERATURE_MSB])
                     measure = temp_lsb + 256 * temp_msb
                     temp_measures.append(measure)
                     if measure > temp_current_max:
                         temp_current_max = measure
                         temp_node_max = int(temp_row['3'])
-                        temp_elapsed_time_max = temp_row['ElapsedTime']
-                        temp_msec_max = int(temp_row['msec'])
+                        temp_elapsed_time_max = temp_row[layout_csv_columns.ELAPSED_TIME]
+                        temp_msec_max = int(temp_row[layout_csv_columns.MSEC])
                     elif measure < temp_current_min:
                         temp_current_min = measure
-                        temp_node_min = int(temp_row['3'])
-                        temp_elapsed_time_min = temp_row['ElapsedTime']
-                        temp_msec_min = int(temp_row['msec'])
+                        temp_node_min = int(temp_row[layout_csv_columns.NODE])
+                        temp_elapsed_time_min = temp_row[layout_csv_columns.ELAPSED_TIME]
+                        temp_msec_min = int(temp_row[layout_csv_columns.MSEC])
 
                 except ValueError:
                     print(
-                        "Error converting: {0} or {1} to an integer at line {2}".format(row['7'], row['8'],
+                        "Error converting: {0} or {1} to an integer at line {2}".format(row[layout_csv_columns.TEMPERATURE_LSB], row[layout_csv_columns.TEMPERATURE_MSB],
                                                                                         temp_index + 1))
                     temp_nb_errors += 1
 
@@ -195,6 +195,4 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
         self.cbox_temperature.stateChanged.connect(self._on_cbox_temperature_clicked)
 
 
-app = QtGui.QApplication([])
-fenetre = XsnifferApp()
-app.exec_()
+
