@@ -6,6 +6,7 @@ from PySide import QtGui
 from gui.FenetrePrincipale import Ui_Form_xsnifferlogparser
 import layout_csv_columns
 
+
 class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
     def __init__(self):
         super(XsnifferApp, self).__init__()
@@ -98,7 +99,8 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
 
                 except ValueError:
                     print("Error converting: {0} or {1} to an integer at line {2}".format(row[
-                                                                                              layout_csv_columns.LIGHT_LSB], row[
+                                                                                              layout_csv_columns.LIGHT_LSB],
+                                                                                          row[
                                                                                               layout_csv_columns.LIGHT_MSB],
                                                                                           light_index + 1))
                     light_nb_errors += 1
@@ -125,7 +127,8 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
                 except ValueError:
                     print(
                         "Error converting: {0} or {1} to an integer at line {2}".format(row[
-                                                                                            layout_csv_columns.TEMPERATURE_LSB], row[
+                                                                                            layout_csv_columns.TEMPERATURE_LSB],
+                                                                                        row[
                                                                                             layout_csv_columns.TEMPERATURE_MSB],
                                                                                         temp_index + 1))
                     temp_nb_errors += 1
@@ -172,14 +175,14 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
                 self.cbox_light.setEnabled(True)
                 if not self.cbox_light.isChecked():
                     self.cbox_light.click()
-            if len(temp_measures) !=0:
+            if len(temp_measures) != 0:
                 self.cbox_temperature.setEnabled(True)
                 if not self.cbox_temperature.isChecked():
                     self.cbox_temperature.click()
 
     def _on_cbox_light_clicked(self):
         if self.cbox_light.isChecked():
-            self.c1 = self.p2.plot(self.light_measures, pen=(0,255,0), name="Light (red)")
+            self.c1 = self.p2.plot(self.light_measures, pen=(0, 255, 0), name="Light (red)")
         else:
             self.c1.clear()
 
@@ -189,7 +192,6 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
         else:
             self.c2.clear()
 
-
     def _setup_connections(self):
         self.btn_browse.clicked.connect(self._on_btn_browse_clicked)
         self.btn_parse.clicked.connect(self._on_btn_parse_clicked)
@@ -197,6 +199,3 @@ class XsnifferApp(Ui_Form_xsnifferlogparser, QtGui.QWidget):
         self.btn_close.clicked.connect(self._on_btn_close_clicked)
         self.cbox_light.stateChanged.connect(self._on_cbox_light_clicked)
         self.cbox_temperature.stateChanged.connect(self._on_cbox_temperature_clicked)
-
-
-
